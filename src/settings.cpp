@@ -2197,7 +2197,7 @@ void InterfaceSettings::setCheckUpdateAfterInstallation(bool b)
 
 bool InterfaceSettings::compactDownloads() const
 {
-  return get<bool>(m_Settings, "Settings", "compact_downloads", false);
+  return get<bool>(m_Settings, "Settings", "compact_downloads", true);
 }
 
 void InterfaceSettings::setCompactDownloads(bool b)
@@ -2207,7 +2207,7 @@ void InterfaceSettings::setCompactDownloads(bool b)
 
 bool InterfaceSettings::metaDownloads() const
 {
-  return get<bool>(m_Settings, "Settings", "meta_downloads", false);
+  return get<bool>(m_Settings, "Settings", "meta_downloads", true);
 }
 
 void InterfaceSettings::setMetaDownloads(bool b)
