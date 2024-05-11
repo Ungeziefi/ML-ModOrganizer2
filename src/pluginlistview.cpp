@@ -216,7 +216,7 @@ void PluginListView::setup(OrganizerCore& core, MainWindow* mw, Ui::MainWindow* 
   });
 
   // sort
-  //This throws error if remove the sort button from other cpp file so i nuked it
+  //This throws error if i remove the sort button from other cpp file so i nuked it
   
   // filter
   connect(ui.filter, &QLineEdit::textChanged, m_sortProxy,
