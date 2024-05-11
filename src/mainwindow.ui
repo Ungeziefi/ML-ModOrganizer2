@@ -808,6 +808,9 @@
               <layout class="QHBoxLayout" name="horizontalLayout_7">
                <item>
                 <widget class="QPushButton" name="sortButton">
+                  <property name="visible">
+                    <bool>false</bool>
+                  </property>
                  <property name="toolTip">
                   <string>Sort the plugins using LOOT.</string>
                  </property>
