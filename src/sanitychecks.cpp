@@ -192,7 +192,7 @@ int checkMissingFiles()
 
     if (!file.exists()) {
       log::warn("{}", QObject::tr(
-                          "'%1' seems to be missing, an antivirus may have deleted it")
+                          "'%1' seems to be missing, an antivirus may have deleted it.")
                           .arg(file.absoluteFilePath()));
 
       ++n;
@@ -242,10 +242,7 @@ int checkBadOSDs(const env::Module& m)
     const auto filename = file.fileName().toStdString();
 
     if (std::regex_match(filename, m, p.first)) {
-      log::warn("{}", QObject::tr(
-                          "%1 is loaded.\nThis program is known to cause issues with "
-                          "Mod Organizer, such as freezing or blank windows. Consider "
-                          "uninstalling it.")
+      log::warn("{}", QObject::tr("%1 is loaded.\nThis program is known to cause issues with Mod Organizer, such as freezing or blank windows. Consider uninstalling it or adding an exclusion if possible.")
                           .arg(QString::fromStdString(p.second)));
 
       log::warn("{}", file.absoluteFilePath());
