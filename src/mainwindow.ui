@@ -806,7 +806,26 @@
              </property>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_7">
-                <!-- Nuked sortButton code -->
+               <item>
+                <widget class="QPushButton" name="sortButton">
+                  <property name="visible">
+                    <bool>false</bool>
+                  </property>
+                 <property name="toolTip">
+                  <string>Sort the plugins using LOOT.</string>
+                 </property>
+                 <property name="whatsThis">
+                  <string>Sort the plugins using LOOT.</string>
+                 </property>
+                 <property name="text">
+                  <string>Sort</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="resources.qrc">
+                   <normaloff>:/MO/gui/sort</normaloff>:/MO/gui/sort</iconset>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <spacer name="horizontalSpacer_3">
                  <property name="orientation">
