@@ -371,7 +371,7 @@ MainWindow::MainWindow(Settings& settings, OrganizerCore& organizerCore,
   ui->groupCombo->installEventFilter(noWheel);
   ui->profileBox->installEventFilter(noWheel);
 
-  //updateSortButton();
+  updateSortButton();
 
   connect(&m_PluginContainer, SIGNAL(diagnosisUpdate()), this,
           SLOT(scheduleCheckForProblems()));
@@ -395,7 +395,7 @@ MainWindow::MainWindow(Settings& settings, OrganizerCore& organizerCore,
   connect(m_OrganizerCore.updater(), SIGNAL(motdAvailable(QString)), this,
           SLOT(motdReceived(QString)));
   connect(&m_OrganizerCore, &OrganizerCore::refreshTriggered, this, [this]() {
-    //updateSortButton();
+    updateSortButton();
   });
 
   connect(&NexusInterface::instance(), SIGNAL(requestNXMDownload(QString)),
@@ -2770,7 +2770,7 @@ void MainWindow::on_actionSettings_triggered()
 
   m_OrganizerCore.refreshLists();
 
-  //updateSortButton();
+  updateSortButton();
 
   if (settings.paths().profiles() != oldProfilesDirectory) {
     refreshProfiles();
@@ -3045,7 +3045,18 @@ void MainWindow::toggleUpdateAction()
   ui->actionUpdate->setVisible(s.checkForUpdates());
 }
 
-//Nuked the updateSortButton
+void MainWindow::updateSortButton()
+{
+  if (m_OrganizerCore.managedGame()->sortMechanism() !=
+      IPluginGame::SortMechanism::NONE) {
+    ui->sortButton->setEnabled(true);
+    ui->sortButton->setToolTip(tr("Sort the plugins using LOOT."));
+  } else {
+    ui->sortButton->setDisabled(true);
+    ui->sortButton->setToolTip(tr("There is no supported sort mechanism for this game. "
+                                  "You will probably have to use a third-party tool."));
+  }
+}
 
 void MainWindow::nxmEndorsementsAvailable(QVariant userData, QVariant resultData, int)
 {
