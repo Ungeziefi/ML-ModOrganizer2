@@ -216,10 +216,8 @@ void PluginListView::setup(OrganizerCore& core, MainWindow* mw, Ui::MainWindow* 
   });
 
   // sort
-  connect(mwui->sortButton, &QPushButton::clicked, [=] {
-    onSortButtonClicked();
-  });
-
+  //This throws error if remove the sort button from other cpp file so i nuked it
+  
   // filter
   connect(ui.filter, &QLineEdit::textChanged, m_sortProxy,
           &PluginListSortProxy::updateFilter);
