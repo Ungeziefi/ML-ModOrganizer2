@@ -360,9 +360,6 @@ void ModListContextMenu::addCategoryContextMenus(ModInfo::Ptr mod)
 void ModListContextMenu::addOverwriteActions(ModInfo::Ptr mod)
 {
   if (QDir(mod->absolutePath()).count() > 2) {
-    addAction(tr("Sync to Mods..."), [=]() {
-      m_core.syncOverwrite();
-    });
     addAction(tr("Create Mod..."), [=]() {
       m_actions.createModFromOverwrite();
     });
