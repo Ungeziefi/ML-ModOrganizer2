@@ -214,7 +214,7 @@ void DirectoryEntry::addFromAllBSAs(const std::wstring& originName,
             std::wofstream createOverrideFileFromBSA(workingDirWithoutExt + L".override");
             if (createOverrideFileFromBSA.is_open())
             {
-              log::warn("Automatically made .override file for {}", filename);
+              log::debug("Automatically made .override file for {}", filename);
               createOverrideFileFromBSA.close();
             }
           } 
