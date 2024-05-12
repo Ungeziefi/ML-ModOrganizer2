@@ -2329,7 +2329,7 @@ void MainWindow::helpTriggered()
 
 void MainWindow::wikiTriggered()
 {
-  shell::Open(QUrl("https://modorganizer2.github.io/"));
+  shell::Open(QUrl("https://stepmodifications.org/wiki/Guide:Mod_Organizer"));
 }
 
 void MainWindow::gameSupportTriggered()
@@ -2339,12 +2339,12 @@ void MainWindow::gameSupportTriggered()
 
 void MainWindow::discordTriggered()
 {
-  shell::Open(QUrl("https://discord.gg/ewUVAqyrQX"));
+  shell::Open(QUrl("https://discord.gg/S99Ary5eba")); //ML discord server
 }
 
 void MainWindow::issueTriggered()
 {
-  shell::Open(QUrl("https://github.com/Modorganizer2/modorganizer/issues"));
+  shell::Open(QUrl("https://github.com/Ungeziefi/ML-ModOrganizer2/issues"));
 }
 
 void MainWindow::tutorialTriggered()
