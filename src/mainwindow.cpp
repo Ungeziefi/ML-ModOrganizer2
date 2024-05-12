@@ -1300,10 +1300,9 @@ void MainWindow::showEvent(QShowEvent* event)
       } else if (newCatDialog.clickedButton() == &defaultBtn) {
         m_CategoryFactory.loadCategories();
       }
-        m_CategoryFactory.saveCategories();
       */
       m_CategoryFactory.reset();
-
+      m_CategoryFactory.saveCategories();
       m_OrganizerCore.settings().setFirstStart(false);
     } else {
       auto& settings = m_OrganizerCore.settings();
