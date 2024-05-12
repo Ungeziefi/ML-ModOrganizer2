@@ -899,6 +899,10 @@ void ModListView::restoreState(const Settings& s)
 
 void ModListView::saveState(Settings& s) const
 {
+  //Need to call these two function below so that the filter is cleared before saving the modlist structure
+  ui.filter->clear();
+  m_filters->clearSelection();
+  
   s.geometry().saveState(header());
 
   s.widgets().saveIndex(ui.groupBy);
