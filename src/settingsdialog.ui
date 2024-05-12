@@ -564,6 +564,10 @@ If you disable this feature, MO will only display official DLCs this way. Please
           </item>
           <item>
            <widget class="QCheckBox" name="saveFiltersBox">
+             <!--Hide the filterbox since we're forcing filters to be cleared when exiting mo2, making this setting useless-->>
+             <property name="visible">
+               <bool>false</bool>
+             </property>
             <property name="toolTip">
              <string>Save the current filters when closing MO2 and restore them on startup.</string>
             </property>
