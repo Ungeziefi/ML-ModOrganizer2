@@ -1938,7 +1938,7 @@ void NexusSettings::setTrackedIntegration(bool b) const
 
 bool NexusSettings::categoryMappings() const
 {
-  return get<bool>(m_Settings, "Settings", "category_mappings", true);
+  return get<bool>(m_Settings, "Settings", "category_mappings", false);
 }
 
 void NexusSettings::setCategoryMappings(bool b) const
