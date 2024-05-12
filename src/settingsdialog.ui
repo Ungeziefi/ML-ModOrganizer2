@@ -97,6 +97,10 @@
               </item>
               <item row="0" column="1">
                <widget class="LinkLabel" name="label_33">
+                 <!-- Hide  the link to translation or maybe link to ML when we accept MO2 translation request-->
+                 <property name="visible">
+                   <bool>false</bool>
+                 </property>
                 <property name="toolTip">
                  <string notr="true">https://discord.gg/ewUVAqyrQX</string>
                 </property>
