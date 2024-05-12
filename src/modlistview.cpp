@@ -823,6 +823,7 @@ void ModListView::setup(OrganizerCore& core, CategoryFactory& factory, MainWindo
     header()->setSectionHidden(ModList::COL_GAME, true);
     header()->setSectionHidden(ModList::COL_INSTALLTIME, true);
     header()->setSectionHidden(ModList::COL_NOTES, true);
+    header()->setSectionHidden(ModList::COL_CATEGORY, true);
 
     // resize mod list to fit content
     for (int i = 0; i < header()->count(); ++i) {
