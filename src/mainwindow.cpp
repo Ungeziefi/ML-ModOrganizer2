@@ -1275,7 +1275,7 @@ void MainWindow::showEvent(QShowEvent* event)
                                  QMessageBox::Ok);
         gameSupportTriggered();
       }
-
+      /* Skip the first time category setup
       QMessageBox newCatDialog;
       newCatDialog.setWindowTitle(tr("Category Setup"));
       newCatDialog.setText(
@@ -1300,7 +1300,9 @@ void MainWindow::showEvent(QShowEvent* event)
       } else if (newCatDialog.clickedButton() == &defaultBtn) {
         m_CategoryFactory.loadCategories();
       }
-      m_CategoryFactory.saveCategories();
+        m_CategoryFactory.saveCategories();
+      */
+      m_CategoryFactory.reset();
 
       m_OrganizerCore.settings().setFirstStart(false);
     } else {
