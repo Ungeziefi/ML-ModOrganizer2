@@ -707,8 +707,7 @@ InstallationResult InstallationManager::install(const QString& fileName,
     } else if (modID != guessedModID) {
       log::debug("passed mod id: {}, guessed id: {}", modID, guessedModID);
     }
-    //This ensures that guessedModName value is set to the highest quality so when the filtering happens it will return the guessedModName as the default one, values under 9999 are untested
-    modName.update(guessedModName, EGuessQuality(9999));
+    modName.update(guessedModName); //removed the second argument so the filter pick guessedModName as default
   }
 
   m_CurrentFile = fileInfo.absoluteFilePath();
