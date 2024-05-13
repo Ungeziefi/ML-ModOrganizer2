@@ -27,6 +27,8 @@ along with Mod Organizer.  If not, see <http://www.gnu.org/licenses/>.
 #include <log.h>
 #include <utility.h>
 
+#include <iplugingame.h> //Needed for the .override check
+
 namespace MOShared
 {
 
@@ -160,6 +162,22 @@ void DirectoryEntry::addDir(FilesOrigin& origin, env::Directory& d,
   m_Populated = true;
 }
 
+std::wstring getFileNameWithoutExtension(const std::filesystem::path& filepath)
+{
+  std::wstring filename = filepath.filename().wstring();
+  size_t lastDotPos     = filename.find_last_of(L".");
+  if (lastDotPos != std::wstring::npos) {
+    return filename.substr(0, lastDotPos);
+  }
+  return filename;
+}
+
+bool fileExists(const std::wstring& filename)
+{
+  std::ifstream file(filename);
+  return file.good();
+}
+
 void DirectoryEntry::addFromAllBSAs(const std::wstring& originName,
                                     const std::wstring& directory, int priority,
                                     const std::vector<std::wstring>& archives,
@@ -167,9 +185,29 @@ void DirectoryEntry::addFromAllBSAs(const std::wstring& originName,
                                     const std::vector<std::wstring>& loadOrder,
                                     DirectoryStats& stats)
 {
+  const IPluginGame* game = qApp->property("managed_game").value<IPluginGame*>();
+  const QString gameName  = game->gameName();
+
   for (const auto& archive : archives) {
     const std::filesystem::path archivePath(archive);
     const auto filename = archivePath.filename().native();
+
+    bool hasOverride;
+    std::wstring bsaNameWithOverride =
+        directory + L"\\" + getFileNameWithoutExtension(filename) + L".override";
+
+    if (!fileExists(bsaNameWithOverride))
+    {
+      if (gameName == "TTW" || gameName == "New Vegas")
+        {
+      log::info("An override file for {} is missing, one was automatically generated.", filename);
+      std::wofstream createOverrideFileFromBSA(bsaNameWithOverride);
+      if (createOverrideFileFromBSA.is_open()) {
+        log::debug("filehandle is open for {}, closing them...", bsaNameWithOverride);
+        createOverrideFileFromBSA.close();
+      }
+      }
+    }
 
     if (!enabledArchives.contains(filename)) {
       continue;
@@ -188,7 +226,8 @@ void DirectoryEntry::addFromAllBSAs(const std::wstring& originName,
         auto itor = std::find(loadOrder.begin(), loadOrder.end(), plugin);
         if (itor != loadOrder.end()) {
           order = std::distance(loadOrder.begin(), itor);
-          addFromBSA(originName, directory, archivePath.native(), priority, order, stats);
+          addFromBSA(originName, directory, archivePath.native(), priority, order,
+                     stats);
         }
       }
     }
