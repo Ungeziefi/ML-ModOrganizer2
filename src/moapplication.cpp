@@ -306,8 +306,7 @@ int MOApplication::setup(MOMultiProcess& multiProcess, bool forceSelect)
       const auto reply = QMessageBox::question(
           nullptr, "FalloutNV_lang.esp was found",
           "This translation plugin directly edits thousands of records to change the "
-          "language, which will cause many incompatibilities with most mods.\n\nDo you "
-          "want to delete it",
+          "language, which will cause many incompatibilities with most mods.\n\nDelete it?",
           QMessageBox::Yes | QMessageBox::No);
       if (reply == QMessageBox::Yes) {
         shellDeleteQuiet(langFilePath);
