@@ -174,6 +174,12 @@ void MOApplication::firstTimeSetup(MOMultiProcess& multiProcess)
       Qt::QueuedConnection);
 }
 
+bool fileExists(const std::wstring& filename)
+{
+  std::ifstream file(filename);
+  return file.good();
+}
+
 int MOApplication::setup(MOMultiProcess& multiProcess, bool forceSelect)
 {
   TimeThis tt("MOApplication setup()");
@@ -295,6 +301,28 @@ int MOApplication::setup(MOMultiProcess& multiProcess, bool forceSelect)
                  : *m_settings->game().edition()),
             m_instance->gamePlugin()->steamAPPId(),
             m_instance->gamePlugin()->gameDirectory().absolutePath());
+
+  // FalloutNV_lang.esp Handling
+  QString gameDirectoryQ = m_instance->gamePlugin()->gameDirectory().absolutePath();
+  QString managedGameQ   = m_instance->gamePlugin()->gameName();
+  std::wstring managedGame   = managedGameQ.toStdWString();
+  std::wstring gameDirectory = gameDirectoryQ.toStdWString();
+  std::wstring langFile      = gameDirectory + L"\\data\\FalloutNV_lang.esp";
+  QString langFireQ           = QString::fromStdWString(langFile);
+  QWidget* wid = qApp->activeWindow();
+
+if (managedGame == L"TTW" || managedGame == L"New Vegas") 
+{
+  if (fileExists(langFile)) 
+  {
+    const auto reply = QMessageBox::question(wid, "FalloutNV_lang.esp was found", "This translation plugin directly edits thousands of records to change the language, which will cause many incompatibilities with most mods.\n\nDo you want to delete it",
+                                  QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+      MOBase::shellDeleteQuiet(langFireQ);
+    }
+  } 
+}
 
   CategoryFactory::instance().loadCategories();
   m_core->updateExecutablesList();
