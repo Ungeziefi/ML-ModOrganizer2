@@ -820,11 +820,6 @@ public:
   bool profileLocalInis() const;
   void setProfileLocalInis(bool b);
 
-  // Enable .git mapping
-  //
-  bool gitMapping() const;
-  void setGitMapping(bool b);
-
   // whether profiles should default to local saves
   //
   bool profileLocalSaves() const;

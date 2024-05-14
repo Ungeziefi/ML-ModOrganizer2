@@ -256,19 +256,6 @@
               <property name="bottomMargin">
                <number>9</number>
               </property>
-               <item>
-                 <widget class="QCheckBox" name="gitMapping">
-                   <property name="toolTip">
-                     <string>Enable MO2 to locate .git directory.</string>
-                   </property>
-                   <property name="whatsThis">
-                     <string>Enable MO2 to locate .git directory.</string>
-                   </property>
-                   <property name="text">
-                     <string>Git mapping</string>
-                   </property>
-                 </widget>
-               </item>
               <item>
                <widget class="QCheckBox" name="centerDialogs">
                 <property name="toolTip">

@@ -3,7 +3,6 @@
 #include "shared/util.h"
 #include <log.h>
 #include <utility.h>
-#include "settings.h"
 
 using namespace MOBase;
 
@@ -283,13 +282,10 @@ void forEachEntryImpl(void* cx, HandleCloserThread& hc,
       ObjectName.Buffer = DirInfo->FileName;
       ObjectName.Length = (USHORT)DirInfo->FileNameLength;
 
-      //Check the setting before mapping .git directory
-      if (!Settings::instance().gitMapping()) {
-        if (std::wstring_view(ObjectName.Buffer, ObjectName.Length / sizeof(wchar_t)) ==
-            L".git") {
-          NextEntryOffset = DirInfo->NextEntryOffset;
-          continue;
-        }
+      if (std::wstring_view(ObjectName.Buffer, ObjectName.Length / sizeof(wchar_t)) ==
+          L".git") {
+        NextEntryOffset = DirInfo->NextEntryOffset;
+        continue;
       }
       
       if (!isDotDir(&ObjectName)) {

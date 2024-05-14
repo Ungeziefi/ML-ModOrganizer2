@@ -29,7 +29,6 @@ GeneralSettingsTab::GeneralSettingsTab(Settings& s, SettingsDialog& d)
   ui->localINIs->setChecked(settings().profileLocalInis());
   ui->localSaves->setChecked(settings().profileLocalSaves());
   ui->automaticArchiveInvalidation->setChecked(settings().profileArchiveInvalidation());
-  ui->gitMapping->setChecked(settings().gitMapping());
 
   // miscellaneous
   ui->centerDialogs->setChecked(settings().geometry().centerDialogs());
@@ -77,7 +76,6 @@ void GeneralSettingsTab::update()
       ui->automaticArchiveInvalidation->isChecked());
 
   // miscellaneous
-  settings().setGitMapping(ui->gitMapping->isChecked());
   settings().geometry().setCenterDialogs(ui->centerDialogs->isChecked());
   settings().interface().setShowChangeGameConfirmation(
       ui->changeGameConfirmation->isChecked());
