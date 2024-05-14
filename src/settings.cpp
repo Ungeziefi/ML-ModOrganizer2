@@ -244,6 +244,16 @@ void Settings::setProfileArchiveInvalidation(bool b)
   set(m_Settings, "Settings", "profile_archive_invalidation", b);
 }
 
+bool Settings::gitMapping() const
+{
+  return get<bool>(m_Settings, "Settings", "git_mapping", false);
+}
+
+void Settings::setGitMapping(bool b)
+{
+  set(m_Settings, "Settings", "git_mapping", b);
+}
+
 bool Settings::useSplash() const
 {
   return get<bool>(m_Settings, "Settings", "use_splash", true);
