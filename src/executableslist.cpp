@@ -141,7 +141,12 @@ ExecutablesList::getPluginExecutables(MOBase::IPluginGame const* game) const
       continue;
     }
 
-    v.push_back({info, Executable::UseApplicationIcon});
+ //Hide NVSE from executable list by default
+if (info.title() != "NVSE" || titleExists("NVSE")) {
+      v.push_back({info, Executable::UseApplicationIcon});
+    } else {
+      v.push_back({info, Executable::UseApplicationIcon | Executable::Hide});
+    }
   }
 
   const QFileInfo eppBin(QCoreApplication::applicationDirPath() +
