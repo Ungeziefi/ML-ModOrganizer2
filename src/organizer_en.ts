@@ -6285,107 +6285,112 @@ Continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="248"/>
+        <location filename="pluginlist.cpp" line="251"/>
         <source>failed to update esp info for file %1 (source id: %2), error: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="408"/>
+        <location filename="pluginlist.cpp" line="411"/>
         <source>Plugin not found: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1270"/>
+        <location filename="pluginlist.cpp" line="1273"/>
         <source>Origin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1274"/>
+        <location filename="pluginlist.cpp" line="1277"/>
         <source>This plugin can&apos;t be disabled or moved (enforced by the game).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1280"/>
+        <location filename="pluginlist.cpp" line="1283"/>
         <source>This plugin can&apos;t be disabled (enforced by the game).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1284"/>
+        <location filename="pluginlist.cpp" line="1287"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1289"/>
+        <location filename="pluginlist.cpp" line="1292"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1294"/>
+        <location filename="pluginlist.cpp" line="1297"/>
         <source>Missing Masters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1306"/>
+        <location filename="pluginlist.cpp" line="1309"/>
         <source>Enabled Masters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1317"/>
+        <location filename="pluginlist.cpp" line="1320"/>
         <source>Loads Archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1318"/>
+        <location filename="pluginlist.cpp" line="1321"/>
         <source>There are Archives connected to this plugin. Their assets will be added to your game, overwriting in case of conflicts following the plugin order. Loose files will always overwrite assets from Archives. (This flag only checks for Archives from the same mod as the plugin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1326"/>
+        <location filename="pluginlist.cpp" line="1329"/>
         <source>Loads INI settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1329"/>
+        <location filename="pluginlist.cpp" line="1332"/>
         <source>There is an ini file connected to this plugin. Its settings will be added to your game settings, overwriting in case of conflicts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1336"/>
+        <location filename="pluginlist.cpp" line="1339"/>
         <source>This %1 is flagged as an ESL. It will adhere to the %1 load order but the records will be loaded in ESL space.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1353"/>
+        <location filename="pluginlist.cpp" line="1356"/>
         <source>This is a dummy plugin. It contains no records and is typically used to load a paired archive file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1358"/>
+        <location filename="pluginlist.cpp" line="1363"/>
+        <source>Light plugins (ESL) are not supported by this game.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pluginlist.cpp" line="1365"/>
         <source>This game does not currently permit custom plugin loading. There may be manual workarounds.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1389"/>
+        <location filename="pluginlist.cpp" line="1397"/>
         <source>Incompatible with %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1395"/>
+        <location filename="pluginlist.cpp" line="1403"/>
         <source>Depends on missing %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1403"/>
+        <location filename="pluginlist.cpp" line="1411"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1407"/>
+        <location filename="pluginlist.cpp" line="1415"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1690"/>
+        <location filename="pluginlist.cpp" line="1698"/>
         <source>failed to restore load order for %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6601,17 +6606,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="problemsdialog.cpp" line="59"/>
-        <location filename="problemsdialog.cpp" line="60"/>
         <source>Fix</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="problemsdialog.cpp" line="67"/>
+        <location filename="problemsdialog.cpp" line="66"/>
         <source>No guided fix</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="problemsdialog.cpp" line="75"/>
+        <location filename="problemsdialog.cpp" line="74"/>
         <source>(There are no notifications)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6981,7 +6985,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="apiuseraccount.cpp" line="14"/>
-        <location filename="settingsdialogdiagnostics.cpp" line="83"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="86"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7458,8 +7462,8 @@ Destination:<byte value="xd"/>
         <location filename="loglist.cpp" line="384"/>
         <location filename="loot.cpp" line="396"/>
         <location filename="organizercore.cpp" line="389"/>
-        <location filename="settingsdialogdiagnostics.cpp" line="37"/>
-        <location filename="settingsdialogdiagnostics.cpp" line="63"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="40"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="66"/>
         <location filename="settingsdialogpaths.cpp" line="100"/>
         <location filename="settingsdialogpaths.cpp" line="236"/>
         <location filename="../../uibase/src/report.cpp" line="65"/>
@@ -7510,8 +7514,8 @@ Destination:<byte value="xd"/>
     </message>
     <message>
         <location filename="loot.cpp" line="401"/>
-        <location filename="settingsdialogdiagnostics.cpp" line="36"/>
-        <location filename="settingsdialogdiagnostics.cpp" line="62"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="39"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="65"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7740,12 +7744,12 @@ Destination:<byte value="xd"/>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="712"/>
+        <location filename="pluginlist.cpp" line="715"/>
         <source>failed to access %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="726"/>
+        <location filename="pluginlist.cpp" line="729"/>
         <source>failed to set file time %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7818,34 +7822,34 @@ This program is known to cause issues with Mod Organizer, such as freezing or bl
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialogdiagnostics.cpp" line="34"/>
-        <location filename="settingsdialogdiagnostics.cpp" line="60"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="37"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="63"/>
         <source>Debug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialogdiagnostics.cpp" line="35"/>
-        <location filename="settingsdialogdiagnostics.cpp" line="61"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="38"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="64"/>
         <source>Info (recommended)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialogdiagnostics.cpp" line="59"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="62"/>
         <source>Trace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialogdiagnostics.cpp" line="84"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="87"/>
         <source>Mini (recommended)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialogdiagnostics.cpp" line="85"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="88"/>
         <source>Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialogdiagnostics.cpp" line="86"/>
+        <location filename="settingsdialogdiagnostics.cpp" line="89"/>
         <source>Full</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8286,17 +8290,17 @@ You can restart Mod Organizer as administrator and try launching the program aga
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../game_gamebryo/src/gamebryo/gamebryosavegame.cpp" line="109"/>
-        <source>wrong file format - expected %1 got %2</source>
+        <location filename="../../game_gamebryo/src/gamebryo/gamebryosavegame.cpp" line="110"/>
+        <source>wrong file format - expected %1 got &apos;%2&apos; for %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../game_gamebryo/src/gamebryo/gamegamebryo.cpp" line="319"/>
+        <location filename="../../game_gamebryo/src/gamebryo/gamegamebryo.cpp" line="323"/>
         <source>failed to query registry path (preflight): %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../game_gamebryo/src/gamebryo/gamegamebryo.cpp" line="327"/>
+        <location filename="../../game_gamebryo/src/gamebryo/gamegamebryo.cpp" line="331"/>
         <source>failed to query registry path (read): %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8413,70 +8417,70 @@ You can restart Mod Organizer as administrator and try launching the program aga
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="533"/>
-        <location filename="../../uibase/src/utility.cpp" line="556"/>
+        <location filename="../../uibase/src/utility.cpp" line="553"/>
+        <location filename="../../uibase/src/utility.cpp" line="576"/>
         <source>You have an invalid custom browser command in the settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="672"/>
-        <location filename="../../uibase/src/utility.cpp" line="701"/>
+        <location filename="../../uibase/src/utility.cpp" line="692"/>
+        <location filename="../../uibase/src/utility.cpp" line="721"/>
         <source>failed to create directory &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="681"/>
-        <location filename="../../uibase/src/utility.cpp" line="708"/>
+        <location filename="../../uibase/src/utility.cpp" line="701"/>
+        <location filename="../../uibase/src/utility.cpp" line="728"/>
         <source>failed to copy &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1115"/>
+        <location filename="../../uibase/src/utility.cpp" line="1135"/>
         <source>%1 B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1115"/>
+        <location filename="../../uibase/src/utility.cpp" line="1135"/>
         <source>%1 KB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1116"/>
+        <location filename="../../uibase/src/utility.cpp" line="1136"/>
         <source>%1 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1116"/>
+        <location filename="../../uibase/src/utility.cpp" line="1136"/>
         <source>%1 GB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1117"/>
+        <location filename="../../uibase/src/utility.cpp" line="1137"/>
         <source>%1 TB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1122"/>
+        <location filename="../../uibase/src/utility.cpp" line="1142"/>
         <source>%1 B/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1122"/>
+        <location filename="../../uibase/src/utility.cpp" line="1142"/>
         <source>%1 KB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1123"/>
+        <location filename="../../uibase/src/utility.cpp" line="1143"/>
         <source>%1 MB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1123"/>
+        <location filename="../../uibase/src/utility.cpp" line="1143"/>
         <source>%1 GB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1124"/>
+        <location filename="../../uibase/src/utility.cpp" line="1144"/>
         <source>%1 TB/s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9558,7 +9562,8 @@ For the other games this is not a sufficient replacement for AI!</source>
     </message>
     <message>
         <location filename="settingsdialog.ui" line="2219"/>
-        <source>Hint: right click link and copy link location</source>
+        <source>Click a link to open the location</source>
+        <oldsource>Hint: right click link and copy link location</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10442,19 +10447,19 @@ Please open the &quot;Nexus&quot; tab.</source>
 <context>
     <name>uibase</name>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1186"/>
+        <location filename="../../uibase/src/utility.cpp" line="1206"/>
         <source>h</source>
         <extracomment>Time remaining hours</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1189"/>
+        <location filename="../../uibase/src/utility.cpp" line="1209"/>
         <source>m</source>
         <extracomment>Time remaining minutes</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../uibase/src/utility.cpp" line="1192"/>
+        <location filename="../../uibase/src/utility.cpp" line="1212"/>
         <source>s</source>
         <extracomment>Time remaining seconds</extracomment>
         <translation type="unfinished"></translation>
