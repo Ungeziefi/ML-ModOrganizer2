@@ -244,6 +244,16 @@ void Settings::setProfileArchiveInvalidation(bool b)
   set(m_Settings, "Settings", "profile_archive_invalidation", b);
 }
 
+bool Settings::modInstallationNameTweak() const
+{
+  return get<bool>(m_Settings, "Settings", "default_modinstallationname_tweak", true);
+}
+
+void Settings::setModInstallationNameTweak(bool b)
+{
+  set(m_Settings, "Settings", "default_modinstallationname_tweak", b);
+}
+
 bool Settings::useSplash() const
 {
   return get<bool>(m_Settings, "Settings", "use_splash", true);
