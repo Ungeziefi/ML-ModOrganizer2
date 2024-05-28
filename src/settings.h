@@ -820,6 +820,11 @@ public:
   bool profileLocalInis() const;
   void setProfileLocalInis(bool b);
 
+  // Default installation mod name tweaks
+  //
+  bool modInstallationNameTweak() const;
+  void setModInstallationNameTweak(bool b);
+
   // whether profiles should default to local saves
   //
   bool profileLocalSaves() const;
