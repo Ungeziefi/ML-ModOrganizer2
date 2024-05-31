@@ -557,7 +557,7 @@ void ModListContextMenu::addRegularActions(ModInfo::Ptr mod)
     } break;
     }
   }
-
+/*
   if (mod->nexusId() > 0 &&
       (mod->getNexusCategory() > 0 || !mod->installationFile().isEmpty()) &&
       !mod->isSeparator()) {
@@ -565,7 +565,7 @@ void ModListContextMenu::addRegularActions(ModInfo::Ptr mod)
       m_actions.remapCategory(m_selected);
     });
   }
-
+*/
   if (mod->nexusId() > 0 && Settings::instance().nexus().trackedIntegration()) {
     switch (mod->trackedState()) {
     case TrackedState::TRACKED_FALSE: {
