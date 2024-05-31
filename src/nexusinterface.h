@@ -519,6 +519,16 @@ public:
 
 public:
   /**
+   * @brief guess the mod id from a filename as delivered by nonNexus
+   * @param fileName name of the file
+   * @return the guessed mod id
+   * @note this currently doesn't fit well with the remaining interface but this is the
+   * best place for the function
+   */
+  static void interpretNonNexusFileName(const QString& fileName, QString& modName,
+                                        int& modID, bool query);
+
+  /**
    * @brief guess the mod id from a filename as delivered by Nexus
    * @param fileName name of the file
    * @return the guessed mod id
