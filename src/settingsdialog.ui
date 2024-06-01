@@ -259,10 +259,10 @@
                <item>
                  <widget class="QCheckBox" name="modInstallationNameTweak">
                    <property name="toolTip">
-                     <string>Use the file name as default instead of the mod's.</string>
+                     <string>Use the file name as default during installation, instead of the mod's.</string>
                    </property>
                    <property name="whatsThis">
-                     <string>Use the file name as default instead of the mod's.</string>
+                     <string>Use the file name as default during installation, instead of the mod's.</string>
                    </property>
                    <property name="text">
                      <string>Default mod installation name tweak</string>

@@ -8786,8 +8786,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="settingsdialog.ui" line="262"/>
         <location filename="settingsdialog.ui" line="265"/>
-        <source>Use the file name as default instead of the mod&apos;s.</source>
-        <oldsource>Tweaks to make the mod installation name defaulting to the filename in the modpage.</oldsource>
+        <source>Use the file name as default during installation, instead of the mod&apos;s.</source>
+        <oldsource>Use the file name as default instead of the mod&apos;s.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8815,7 +8815,6 @@ p, li { white-space: pre-wrap; }
         <location filename="settingsdialog.ui" line="295"/>
         <location filename="settingsdialog.ui" line="298"/>
         <source>Show the menubar when the Alt key is pressed.</source>
-        <oldsource>Show the menubar when the Alt key is pressed</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
