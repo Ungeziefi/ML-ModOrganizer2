@@ -35,6 +35,7 @@ along with Mod Organizer.  If not, see <http://www.gnu.org/licenses/>.
 #include "settings.h"
 #include <scopeguard.h>
 #include <utility.h>
+#include "shared/util.h"
 
 #include <QApplication>
 #include <QDateTime>
@@ -632,6 +633,7 @@ InstallationResult InstallationManager::install(const QString& fileName,
   });
 
   QFileInfo fileInfo(fileName);
+  QString url;  
   if (!getSupportedExtensions().contains(fileInfo.suffix(), Qt::CaseInsensitive)) {
     reportError(tr("File format \"%1\" not supported").arg(fileInfo.suffix()));
     return InstallationResult(IPluginInstaller::RESULT_FAILED);
@@ -655,6 +657,7 @@ InstallationResult InstallationManager::install(const QString& fileName,
     QSettings metaFile(metaName, QSettings::IniFormat);
     gameName = metaFile.value("gameName", "").toString();
     modID    = metaFile.value("modID", 0).toInt();
+    url = metaFile.value("url", "").toString();
     QTextDocument doc;
     doc.setHtml(metaFile.value("name", "").toString());
     modName.update(doc.toPlainText(), GUESS_FALLBACK);
@@ -700,8 +703,14 @@ InstallationResult InstallationManager::install(const QString& fileName,
      // information
     QString guessedModName;
     int guessedModID = modID;
-    NexusInterface::interpretNexusFileName(QFileInfo(fileName).fileName(),
-                                           guessedModName, guessedModID, false);
+    
+    if (isNxmLink(url))
+      NexusInterface::interpretNexusFileName(QFileInfo(fileName).fileName(),
+                                             guessedModName, guessedModID, false);
+    else
+      NexusInterface::interpretNonNexusFileName(QFileInfo(fileName).fileName(),
+                                             guessedModName, guessedModID, false);
+    
     if ((modID == 0) && (guessedModID != -1)) {
       modID = guessedModID;
     } else if (modID != guessedModID) {

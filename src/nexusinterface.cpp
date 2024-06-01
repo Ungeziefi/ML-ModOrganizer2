@@ -320,6 +320,74 @@ void NexusInterface::setUserAccount(const APIUserAccount& user)
   emit requestsChanged(getAPIStats(), m_User);
 }
 
+void NexusInterface::interpretNonNexusFileName(const QString& fileName, QString& modName,
+                                            int& modID, bool query)
+{
+  qDebug("executing NexusInterface::interpretNonNexusFileName");
+  // guess the mod name from the file name
+  static const QRegularExpression complex(
+      R"(^([a-zA-Z0-9_'"\-.() ]*?)([-_ ][VvRr]+[0-9]+(?:(?:[\.][0-9]+){0,2}|(?:[_][0-9]+){0,2}|(?:[-.][0-9]+){0,2})?[ab]?)??-([1-9][0-9]+)?-.*?\.(zip|rar|7z))");
+  // complex regex explanation:
+  // group 1: modname.
+  // group 2: optional version,
+  //  assumed to start with v (empty most of the time).
+  // group 3: NexusId,
+  //  assumed wrapped in "-", will miss single digit IDs for better accuracy.
+  // If no id is present the whole regex does not match.
+  static const QRegularExpression simple(R"(^[^a-zA-Z]*([a-zA-Z_ ]+))");
+  auto complexMatch = complex.match(fileName);
+  auto simpleMatch  = simple.match(fileName);
+
+  // assume not found
+  modID = -1;
+
+  if (complexMatch.hasMatch()) {
+    modName = complexMatch.captured(1);
+    if (!query && !complexMatch.captured(3).isNull()) {
+      modID = 0; //Todo when other website made an API
+    }
+  } else if (simpleMatch.hasMatch()) {
+    modName = simpleMatch.captured(0);
+  } else {
+    modName.clear();
+  }
+
+  if (query) {
+    SelectionDialog selection(tr("Please pick the mod ID for \"%1\"").arg(fileName));
+    int index   = 0;
+    auto splits = fileName.split(QRegularExpression("[^0-9]"), Qt::KeepEmptyParts);
+    for (auto substr : splits) {
+      bool ok   = false;
+      int value = substr.toInt(&ok);
+      if (ok) {
+        QString highlight(fileName);
+        highlight.insert(index, " *");
+        highlight.insert(index + substr.length() + 2, "* ");
+
+        QStringList choice;
+        choice << substr;
+        choice << (index > 0 ? fileName.left(index - 1) : substr);
+        selection.addChoice(substr, highlight, choice);
+      }
+      index += substr.length() + 1;
+    }
+
+    if (selection.numChoices() > 0) {
+      if (selection.exec() == QDialog::Accepted) {
+        auto choice = selection.getChoiceData().toStringList();
+        modID       = choice.at(0).toInt();
+        modName     = choice.at(1);
+        modName     = modName.replace('_', ' ').trimmed();
+        log::debug("user selected mod ID {} and mod name \"{}\"", modID, modName);
+      } else {
+        log::debug("user canceled mod ID selection");
+      }
+    } else {
+      log::debug("no possible mod IDs found in file name");
+    }
+  }
+}
+
 void NexusInterface::interpretNexusFileName(const QString& fileName, QString& modName,
                                             int& modID, bool query)
 {
