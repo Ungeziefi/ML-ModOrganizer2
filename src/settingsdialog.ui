@@ -259,10 +259,10 @@
                <item>
                  <widget class="QCheckBox" name="modInstallationNameTweak">
                    <property name="toolTip">
-                     <string>Tweaks to make the mod installation name defaulting to the filename in the modpage.</string>
+                     <string>Use the file name as default instead of the mod's.</string>
                    </property>
                    <property name="whatsThis">
-                     <string>Tweaks to make the mod installation name defaulting to the filename in the modpage.</string>
+                     <string>Use the file name as default instead of the mod's.</string>
                    </property>
                    <property name="text">
                      <string>Default mod installation name tweak</string>
@@ -292,10 +292,10 @@
               <item>
                <widget class="QCheckBox" name="showMenubarOnAlt">
                 <property name="toolTip">
-                 <string>Show the menubar when the Alt key is pressed</string>
+                 <string>Show the menubar when the Alt key is pressed.</string>
                 </property>
                 <property name="whatsThis">
-                 <string>Show the menubar when the Alt key is pressed</string>
+                 <string>Show the menubar when the Alt key is pressed.</string>
                 </property>
                 <property name="text">
                  <string>Show menubar when pressing Alt</string>
