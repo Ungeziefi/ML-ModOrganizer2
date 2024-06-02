@@ -1635,7 +1635,7 @@ void PluginList::setPluginPriority(int row, int& newPriority, bool isForced)
       QDialogButtonBox::StandardButton response = QuestionBoxMemory::query(
           QApplication::activeModalWidget(), "dontAllowESPAboveESM",
           tr("Invalid plugin load order"),
-          tr("Plugins cannot be loaded among master plugins."),
+          tr("Plugins cannot be loaded among master plugins.<br><br>Acknowledge?"),
           QDialogButtonBox::Yes,
           QDialogButtonBox::Yes);
       qWarning("Plugins cannot be loaded among master plugins.");
@@ -1650,7 +1650,7 @@ void PluginList::setPluginPriority(int row, int& newPriority, bool isForced)
 
       QDialogButtonBox::StandardButton response = QuestionBoxMemory::query(
           QApplication::activeModalWidget(), "dontAllowESMBelowESP",
-          tr("Invalid plugin load order"), tr("Master plugins cannot be loaded among plugins."),
+          tr("Invalid plugin load order"), tr("Master plugins cannot be loaded among plugins.<br><br>Acknowledge?"),
           QDialogButtonBox::Yes, QDialogButtonBox::Yes);
       qWarning("Master plugins cannot be loaded among plugins.");
       --newPriorityTemp;
@@ -1680,7 +1680,7 @@ void PluginList::setPluginPriority(int row, int& newPriority, bool isForced)
 
           QDialogButtonBox::StandardButton response = QuestionBoxMemory::query(
                   QApplication::activeModalWidget(), "dontAllowChildrenAboveMaster",
-                  tr("Invalid plugin load order"), tr("Plugins cannot be loaded before their masters."),
+                  tr("Invalid plugin load order"), tr("Plugins cannot be loaded before their masters.<br><br>Acknowledge?"),
                   QDialogButtonBox::Yes, QDialogButtonBox::Yes);
           qWarning("Plugins cannot be loaded before their masters.");
           newPriorityTemp = masterPriority + 1;
@@ -1695,7 +1695,7 @@ void PluginList::setPluginPriority(int row, int& newPriority, bool isForced)
         if (master.compare(m_ESPs[row].name, Qt::CaseInsensitive) == 0) {
           QDialogButtonBox::StandardButton response = QuestionBoxMemory::query(
               QApplication::activeModalWidget(), "dontAllowMasterBelowChildren",
-              tr("Invalid plugin load order"), tr("Masters cannot be moved below ones that require them."),
+              tr("Invalid plugin load order"), tr("Masters cannot be moved below ones that require them.<br><br>Acknowledge?"),
               QDialogButtonBox::Yes, QDialogButtonBox::Yes);
           qWarning("Masters cannot be moved below ones that require them.");
           newPriorityTemp = otherInfo->priority - 1;
