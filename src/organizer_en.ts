@@ -17,7 +17,6 @@
     <message>
         <location filename="aboutdialog.ui" line="110"/>
         <source>USVFS:</source>
-        <oldsource>usvfs:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6228,158 +6227,187 @@ Continue?</source>
 <context>
     <name>PluginList</name>
     <message>
-        <location filename="pluginlist.cpp" line="92"/>
+        <location filename="pluginlist.cpp" line="93"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="94"/>
+        <location filename="pluginlist.cpp" line="95"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="96"/>
+        <location filename="pluginlist.cpp" line="97"/>
         <source>Mod Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="98"/>
+        <location filename="pluginlist.cpp" line="99"/>
         <source>Flags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="100"/>
-        <location filename="pluginlist.cpp" line="118"/>
+        <location filename="pluginlist.cpp" line="101"/>
+        <location filename="pluginlist.cpp" line="119"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="108"/>
+        <location filename="pluginlist.cpp" line="109"/>
         <source>Name of the plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="110"/>
+        <location filename="pluginlist.cpp" line="111"/>
         <source>Emblems to highlight things that might require attention.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="112"/>
+        <location filename="pluginlist.cpp" line="113"/>
         <source>Load priority of plugins. The higher, the more &quot;important&quot; it is and thus overwrites data from plugins with lower priority.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="116"/>
+        <location filename="pluginlist.cpp" line="117"/>
         <source>Determines the formids of objects originating from this mods.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="251"/>
+        <location filename="pluginlist.cpp" line="252"/>
         <source>failed to update esp info for file %1 (source id: %2), error: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="411"/>
+        <location filename="pluginlist.cpp" line="412"/>
         <source>Plugin not found: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1273"/>
+        <location filename="pluginlist.cpp" line="1274"/>
         <source>Origin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1277"/>
+        <location filename="pluginlist.cpp" line="1278"/>
         <source>This plugin can&apos;t be disabled or moved (enforced by the game).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1283"/>
+        <location filename="pluginlist.cpp" line="1284"/>
         <source>This plugin can&apos;t be disabled (enforced by the game).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1287"/>
+        <location filename="pluginlist.cpp" line="1288"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1292"/>
+        <location filename="pluginlist.cpp" line="1293"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1297"/>
+        <location filename="pluginlist.cpp" line="1298"/>
         <source>Missing Masters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1309"/>
+        <location filename="pluginlist.cpp" line="1310"/>
         <source>Enabled Masters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1320"/>
+        <location filename="pluginlist.cpp" line="1321"/>
         <source>Loads Archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1321"/>
+        <location filename="pluginlist.cpp" line="1322"/>
         <source>There are Archives connected to this plugin. Their assets will be added to your game, overwriting in case of conflicts following the plugin order. Loose files will always overwrite assets from Archives. (This flag only checks for Archives from the same mod as the plugin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1329"/>
+        <location filename="pluginlist.cpp" line="1330"/>
         <source>Loads INI settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1332"/>
+        <location filename="pluginlist.cpp" line="1333"/>
         <source>There is an ini file connected to this plugin. Its settings will be added to your game settings, overwriting in case of conflicts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1339"/>
+        <location filename="pluginlist.cpp" line="1340"/>
         <source>This %1 is flagged as an ESL. It will adhere to the %1 load order but the records will be loaded in ESL space.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1356"/>
+        <location filename="pluginlist.cpp" line="1357"/>
         <source>This is a dummy plugin. It contains no records and is typically used to load a paired archive file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1363"/>
+        <location filename="pluginlist.cpp" line="1364"/>
         <source>Light plugins (ESL) are not supported by this game.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1365"/>
+        <location filename="pluginlist.cpp" line="1366"/>
         <source>This game does not currently permit custom plugin loading. There may be manual workarounds.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1397"/>
+        <location filename="pluginlist.cpp" line="1398"/>
         <source>Incompatible with %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1403"/>
+        <location filename="pluginlist.cpp" line="1404"/>
         <source>Depends on missing %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1411"/>
+        <location filename="pluginlist.cpp" line="1412"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1415"/>
+        <location filename="pluginlist.cpp" line="1416"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="1698"/>
+        <location filename="pluginlist.cpp" line="1637"/>
+        <location filename="pluginlist.cpp" line="1652"/>
+        <location filename="pluginlist.cpp" line="1682"/>
+        <location filename="pluginlist.cpp" line="1697"/>
+        <source>Invalid plugin load order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pluginlist.cpp" line="1638"/>
+        <source>Plugins cannot be loaded among master plugins.</source>
+        <oldsource>Plugins cannot be loaded among master plugins.&lt;br&gt;&lt;br&gt;Acknowledge?</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pluginlist.cpp" line="1652"/>
+        <source>Master plugins cannot be loaded among plugins.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pluginlist.cpp" line="1682"/>
+        <source>Plugins cannot be loaded before their masters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pluginlist.cpp" line="1697"/>
+        <source>Masters cannot be moved below ones that require them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pluginlist.cpp" line="1730"/>
         <source>failed to restore load order for %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7733,12 +7761,12 @@ Destination:<byte value="xd"/>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="715"/>
+        <location filename="pluginlist.cpp" line="716"/>
         <source>failed to access %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pluginlist.cpp" line="729"/>
+        <location filename="pluginlist.cpp" line="730"/>
         <source>failed to set file time %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8789,7 +8817,6 @@ p, li { white-space: pre-wrap; }
         <location filename="settingsdialog.ui" line="262"/>
         <location filename="settingsdialog.ui" line="265"/>
         <source>Use the file name as default during installation, instead of the mod&apos;s.</source>
-        <oldsource>Use the file name as default instead of the mod&apos;s.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
