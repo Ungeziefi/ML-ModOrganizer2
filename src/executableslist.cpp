@@ -135,30 +135,12 @@ ExecutablesList::getPluginExecutables(MOBase::IPluginGame const* game) const
   Q_ASSERT(game != nullptr);
 
   std::vector<Executable> v;
-  uint64_t executableHash;
 
   for (const ExecutableInfo& info : game->executables()) {
     if (!info.isValid()) {
       continue;
     }
 
-    // Hide NVSE from executable list by default if it's patched
-    if (info.title() == "Tale of Two Wastelands" || info.title() == "New Vegas") {
-      executableHash = getFileHash(info.binary().absoluteFilePath().toStdWString());
-      v.push_back({info, Executable::UseApplicationIcon});
-    }
-
-    if (info.title() == "NVSE") {
-      const std::unordered_set<uint64_t> patchedExecutableHashes = {
-          7625907240992332651,   // patched gog
-          7658157216307907036,   // patched epic
-          12047903279041789040,  // patched steam
-      };
-      if (patchedExecutableHashes.count(executableHash) > 0) {
-        v.push_back({info, Executable::UseApplicationIcon | Executable::Hide});
-      } else
-        v.push_back({info, Executable::UseApplicationIcon});
-    }
     v.push_back({info, Executable::UseApplicationIcon});
   }
 
