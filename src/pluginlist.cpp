@@ -49,7 +49,6 @@ along with Mod Organizer.  If not, see <http://www.gnu.org/licenses/>.
 #include <QSortFilterProxyModel>
 #include <QString>
 #include <QtDebug>
-#include <questionboxmemory.h>
 
 #include <algorithm>
 #include <ctime>
@@ -1631,13 +1630,6 @@ void PluginList::setPluginPriority(int row, int& newPriority, bool isForced)
            (m_ESPs.at(m_ESPsByPriority.at(newPriorityTemp)).isMasterFlagged ||
             m_ESPs.at(m_ESPsByPriority.at(newPriorityTemp)).hasLightExtension ||
             m_ESPs.at(m_ESPsByPriority.at(newPriorityTemp)).hasMasterExtension)) {
-
-      QDialogButtonBox::StandardButton response = QuestionBoxMemory::query(
-          QApplication::activeModalWidget(), "dontAllowESPAboveESM",
-          tr("Invalid plugin load order"),
-          tr("Plugins cannot be loaded among master plugins."),
-          QDialogButtonBox::Ok);
-      qWarning("Plugins cannot be loaded among master plugins.");
       ++newPriorityTemp;
     }
   } else {
@@ -1646,24 +1638,11 @@ void PluginList::setPluginPriority(int row, int& newPriority, bool isForced)
            !m_ESPs.at(m_ESPsByPriority.at(newPriorityTemp)).isMasterFlagged &&
            !m_ESPs.at(m_ESPsByPriority.at(newPriorityTemp)).hasLightExtension &&
            !m_ESPs.at(m_ESPsByPriority.at(newPriorityTemp)).hasMasterExtension) {
-
-      QDialogButtonBox::StandardButton response = QuestionBoxMemory::query(
-          QApplication::activeModalWidget(), "dontAllowESMBelowESP",
-          tr("Invalid plugin load order"), tr("Master plugins cannot be loaded among plugins."),
-          QDialogButtonBox::Ok);
-      qWarning("Master plugins cannot be loaded among plugins.");
       --newPriorityTemp;
     }
     // also don't allow "regular" esms to be moved above primary plugins
     while ((newPriorityTemp < static_cast<int>(m_ESPsByPriority.size() - 1)) &&
            (m_ESPs.at(m_ESPsByPriority.at(newPriorityTemp)).forceLoaded)) {
-      /* Doesn't work as expected
-      QDialogButtonBox::StandardButton response = QuestionBoxMemory::query(
-          QApplication::activeModalWidget(), "dontAllowESMabovePrimary",
-          tr("Invalid plugin load order"), tr(""),
-          QDialogButtonBox::Yes, QDialogButtonBox::Yes);
-      qWarning("");
-      */
       ++newPriorityTemp;
     }
   }
@@ -1676,12 +1655,6 @@ void PluginList::setPluginPriority(int row, int& newPriority, bool isForced)
       if (iter != m_ESPsByName.end()) {
         int masterPriority = m_ESPs[iter->second].priority;
         if (masterPriority >= newPriorityTemp) {
-
-          QDialogButtonBox::StandardButton response = QuestionBoxMemory::query(
-                  QApplication::activeModalWidget(), "dontAllowChildrenAboveMaster",
-                  tr("Invalid plugin load order"), tr("Plugins cannot be loaded before their masters."),
-                  QDialogButtonBox::Ok);
-          qWarning("Plugins cannot be loaded before their masters.");
           newPriorityTemp = masterPriority + 1;
         }
       }
@@ -1692,11 +1665,6 @@ void PluginList::setPluginPriority(int row, int& newPriority, bool isForced)
       PluginList::ESPInfo* otherInfo = &m_ESPs.at(m_ESPsByPriority[i]);
       for (auto master : otherInfo->masters) {
         if (master.compare(m_ESPs[row].name, Qt::CaseInsensitive) == 0) {
-          QDialogButtonBox::StandardButton response = QuestionBoxMemory::query(
-              QApplication::activeModalWidget(), "dontAllowMasterBelowChildren",
-              tr("Invalid plugin load order"), tr("Masters cannot be moved below ones that require them."),
-              QDialogButtonBox::Ok);
-          qWarning("Masters cannot be moved below ones that require them.");
           newPriorityTemp = otherInfo->priority - 1;
           break;
         }
