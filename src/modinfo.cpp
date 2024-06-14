@@ -208,6 +208,53 @@ bool ModInfo::removeMod(unsigned int index)
   return true;
 }
 
+bool ModInfo::removeMod(unsigned int index, bool deletePermanent)
+{
+  QMutexLocker locker(&s_Mutex);
+
+  if (index >= s_Collection.size()) {
+    throw Exception(tr("remove: invalid mod index %1").arg(index));
+  }
+
+  ModInfo::Ptr modInfo = s_Collection[index];
+
+  // remove the actual mod (this is the most likely to fail so we do this first)
+  if (modInfo->isRegular()) {
+    if (deletePermanent) {
+      if (!shellDelete(QStringList(modInfo->absolutePath()), false)) {
+        reportError(
+            tr("remove: failed to delete mod '%1' directory").arg(modInfo->name()));
+        return false;
+      }
+    } else {
+      if (!shellDelete(QStringList(modInfo->absolutePath()), true)) {
+        reportError(
+            tr("remove: failed to delete mod '%1' directory").arg(modInfo->name()));
+        return false;
+      }
+    }
+  }
+
+  // update the indices
+  s_ModsByName.erase(s_ModsByName.find(modInfo->name()));
+
+  auto iter = s_ModsByModID.find(
+      std::pair<QString, int>(modInfo->gameName(), modInfo->nexusId()));
+  if (iter != s_ModsByModID.end()) {
+    std::vector<unsigned int> indices = iter->second;
+    indices.erase(std::remove(indices.begin(), indices.end(), index), indices.end());
+    s_ModsByModID[std::pair<QString, int>(modInfo->gameName(), modInfo->nexusId())] =
+        indices;
+  }
+
+  // finally, remove the mod from the collection
+  s_Collection.erase(s_Collection.begin() + index);
+
+  // and update the indices
+  updateIndices();
+  return true;
+}
+
 unsigned int ModInfo::getIndex(const QString& name)
 {
   QMutexLocker locker(&s_Mutex);
