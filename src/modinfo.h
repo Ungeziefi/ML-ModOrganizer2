@@ -180,6 +180,18 @@ public:  // Static functions:
   static bool removeMod(unsigned int index);
 
   /**
+   * @brief Remove a mod by index.
+   *
+   * This physically deletes the specified mod from the disc and updates the ModInfo
+   * collection but not other structures that reference mods.
+   *
+   * @param index Index of the mod to delete and whether to delete the files permanently
+   *
+   * @return true if removal was successful, false otherwise.
+   */
+  static bool removeMod(unsigned int index, bool deletePermanent);
+
+  /**
    * @brief Retrieve the mod index by the mod name.
    *
    * @param name Name of the mod to look up.
