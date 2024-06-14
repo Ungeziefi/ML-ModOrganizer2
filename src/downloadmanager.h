@@ -580,6 +580,8 @@ private:
 
   void removeFile(int index, bool deleteFile);
 
+  void removeFile(int index, bool deleteFile, bool deletePermanent);
+
   void refreshAlphabeticalTranslation();
 
   bool ByName(int LHS, int RHS);
