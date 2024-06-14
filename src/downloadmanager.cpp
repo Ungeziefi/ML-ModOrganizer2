@@ -806,6 +806,57 @@ void DownloadManager::removeFile(int index, bool deleteFile)
   m_DownloadRemoved(index);
 }
 
+void DownloadManager::removeFile(int index, bool deleteFile, bool deletePermanent)
+{
+  // Avoid triggering refreshes from DirWatcher
+  ScopedDisableDirWatcher scopedDirWatcher(this);
+
+  if (index >= m_ActiveDownloads.size()) {
+    throw MyException(tr("remove: invalid download index %1").arg(index));
+  }
+
+  DownloadInfo* download = m_ActiveDownloads.at(index);
+  QString filePath       = m_OutputDirectory + "/" + download->m_FileName;
+  if ((download->m_State == STATE_STARTED) ||
+      (download->m_State == STATE_DOWNLOADING)) {
+    // shouldn't have been possible
+    log::error("tried to remove active download");
+    return;
+  }
+
+  if ((download->m_State == STATE_PAUSED) || (download->m_State == STATE_ERROR)) {
+    filePath = download->m_Output.fileName();
+  }
+
+  if (deleteFile) {
+    if (deletePermanent) {
+      if (!shellDelete(QStringList(filePath), false)) {  // Permanently delete the file
+        reportError(tr("failed to delete %1").arg(filePath));
+        return;
+      }
+    } else if (!shellDelete(QStringList(filePath),
+                            true)) {  // Move the file into recycle bin
+      reportError(tr("failed to delete %1").arg(filePath));
+      return;
+    }
+
+    QFile metaFile(filePath.append(".meta"));
+
+    if (deletePermanent) {
+      if (metaFile.exists() && !shellDelete(QStringList(filePath), false)) {
+        reportError(tr("failed to delete meta file for %1").arg(filePath));
+      }
+    } else if (metaFile.exists() && !shellDelete(QStringList(filePath), true)) {
+      reportError(tr("failed to delete meta file for %1").arg(filePath));
+    }
+  } else {
+    QSettings metaSettings(filePath.append(".meta"), QSettings::IniFormat);
+    if (!download->m_Hidden)
+      metaSettings.setValue("removed", true);
+  }
+  m_DownloadRemoved(index);
+}
+
 class LessThanWrapper
 {
 public:
@@ -908,6 +959,49 @@ void DownloadManager::removeDownload(int index, bool deleteFile)
       }
 
       removeFile(index, deleteFile);
+      delete m_ActiveDownloads.at(index);
+      m_ActiveDownloads.erase(m_ActiveDownloads.begin() + index);
+    }
+    emit update(-1);
+  } catch (const std::exception& e) {
+    log::error("failed to remove download: {}", e.what());
+  }
+  refreshList();
+}
+
+void DownloadManager::removeDownload(int index, bool deleteFile, bool deletePermanent)
+{
+  try {
+    // avoid dirWatcher triggering refreshes
+    ScopedDisableDirWatcher scopedDirWatcher(this);
+
+    emit aboutToUpdate();
+
+    if (index < 0) {
+      bool removeAll            = (index == -1);
+      DownloadState removeState = (index == -2 ? STATE_INSTALLED : STATE_UNINSTALLED);
+
+      index = 0;
+      for (QVector<DownloadInfo*>::iterator iter = m_ActiveDownloads.begin();
+           iter != m_ActiveDownloads.end();) {
+        DownloadState downloadState = (*iter)->m_State;
+        if ((removeAll && (downloadState >= STATE_READY)) ||
+            (removeState == downloadState)) {
+          removeFile(index, deleteFile, deletePermanent);
+          delete *iter;
+          iter = m_ActiveDownloads.erase(iter);
+        } else {
+          ++iter;
+          ++index;
+        }
+      }
+    } else {
+      if (index >= m_ActiveDownloads.size()) {
+        reportError(tr("remove: invalid download index %1").arg(index));
+        // emit update(-1);
+        return;
+      }
+      removeFile(index, deleteFile, deletePermanent);
       delete m_ActiveDownloads.at(index);
       m_ActiveDownloads.erase(m_ActiveDownloads.begin() + index);
     }

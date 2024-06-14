@@ -474,6 +474,16 @@ public slots:
   void removeDownload(int index, bool deleteFile);
 
   /**
+   * @brief removes the specified download
+   *
+   * @param index index of the download to remove
+   * @param deleteFile if true, the file will also be deleted from disc, otherwise it is
+   *only marked as hidden.
+   * @param Permanently deleteFile if true, the file will be deleted permanently instead of moving into recyclebin
+   **/
+  void removeDownload(int index, bool deleteFile, bool deletePermanent);
+
+  /**
    * @brief restores the specified download to view (which was previously hidden
    * @param index index of the download to restore
    */
@@ -569,6 +579,8 @@ private:
   DownloadInfo* findDownload(QObject* reply, int* index = nullptr) const;
 
   void removeFile(int index, bool deleteFile);
+
+  void removeFile(int index, bool deleteFile, bool deletePermanent);
 
   void refreshAlphabeticalTranslation();
 

@@ -789,22 +789,36 @@ void ModListViewActions::removeMods(const QModelIndexList& indices) const
             ModInfo::getByIndex(idx.data(ModList::IndexRole).toInt())->name());
         ++i;
       }
-      if (QMessageBox::question(
-              m_parent, tr("Confirm"),
-              tr("Remove the following mods?<br><ul>%1</ul>").arg(mods),
-              QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-        // use mod names instead of indexes because those become invalid during the
-        // removal
+
+      const auto r = MOBase::TaskDialog(nullptr, tr("Delete multiple mods"))
+                             .main(tr("Remove the following mods?<br><ul>%1</ul>").arg(mods))
+                             .icon(QMessageBox::Question)
+                             .button({tr("Move to the Recycle Bin"), QMessageBox::Yes})
+                             .button({tr("Delete permanently"), QMessageBox::Ok})
+                             .button({tr("Cancel"), QMessageBox::Cancel})
+                             .remember("rememberMultipleModsRowDeletion")
+                             .exec();
+
+      switch (r) {
+      case QMessageBox::Yes:
         DownloadManager::startDisableDirWatcher();
         for (QString name : modNames) {
           m_core.modList()->removeRowForce(ModInfo::getIndex(name), QModelIndex());
         }
         DownloadManager::endDisableDirWatcher();
+        break;
+      case QMessageBox::Ok:
+        DownloadManager::startDisableDirWatcher();
+        for (QString name : modNames) {
+          m_core.modList()->removeRowForce(ModInfo::getIndex(name), QModelIndex(), true);
+        }
+        DownloadManager::endDisableDirWatcher();
+        break;
       }
-    } else if (!indices.isEmpty()) {
-      m_core.modList()->removeRow(indices[0].data(ModList::IndexRole).toInt(),
-                                  QModelIndex());
     }
+    else if (!indices.isEmpty()) 
+      m_core.modList()->removeRow(indices[0].data(ModList::IndexRole).toInt(), QModelIndex());
+    
     m_view->updateModCount();
     m_pluginView->updatePluginCount();
   } catch (const std::exception& e) {

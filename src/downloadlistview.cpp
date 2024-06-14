@@ -377,16 +377,21 @@ void DownloadListView::issueDelete(int index)
                      .content(m_Manager->getFilePath(index))
                      .icon(QMessageBox::Question)
                      .button({tr("Move to the Recycle Bin"), QMessageBox::Yes})
+                     .button({tr("Delete permanently"), QMessageBox::Ok})
                      .button({tr("Cancel"), QMessageBox::Cancel})
+                     .remember("rememberIssueDelete")
                      .exec();
 
-  if (r != QMessageBox::Yes) {
-    return;
+  switch (r)
+  {
+  case QMessageBox::Yes:
+    emit removeDownload(index, true);
+    break;
+  case QMessageBox::Ok:
+    emit removeDownload(index, true, true);
+    break;
   }
-
-  emit removeDownload(index, true);
 }
-
 void DownloadListView::issueRemoveFromView(int index)
 {
   log::debug("removing from view: {}", index);
@@ -440,34 +445,67 @@ void DownloadListView::issueResume(int index)
 
 void DownloadListView::issueDeleteAll()
 {
-  if (QMessageBox::warning(
-          nullptr, tr("Delete Files?"),
-          tr("This will remove all finished downloads from this list and from "
-             "disk.\n\nAre you absolutely sure you want to proceed?"),
-          QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-    emit removeDownload(-1, true);
-  }
+  const auto r = MOBase::TaskDialog(this, tr("Delete all downloads?"))
+                    .main("This will remove all finished downloads from this list and from disk.")
+                    .icon(QMessageBox::Question)
+                    .button({tr("Move to the Recycle Bin"), QMessageBox::Yes})
+                    .button({tr("Delete permanently"), QMessageBox::Ok})
+                    .button({tr("Cancel"), QMessageBox::Cancel})
+                    .remember("rememberIssueDeleteAll")
+                    .exec();
+
+  switch (r) {
+    case QMessageBox::Yes:
+      emit removeDownload(-1, true);
+      break;
+    case QMessageBox::Ok:
+      emit removeDownload(-1, true, true);
+      break;
+    }
 }
 
 void DownloadListView::issueDeleteCompleted()
 {
-  if (QMessageBox::warning(
-          nullptr, tr("Delete Files?"),
-          tr("This will remove all installed downloads from this list and from "
-             "disk.\n\nAre you absolutely sure you want to proceed?"),
-          QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+  const auto r = MOBase::TaskDialog(this, tr("Delete all installed downloads?"))
+                     .main("This will remove all installed downloads from this list and from "
+                           "disk.")
+                     .icon(QMessageBox::Question)
+                     .button({tr("Move to the Recycle Bin"), QMessageBox::Yes})
+                     .button({tr("Delete permanently"), QMessageBox::Ok})
+                     .button({tr("Cancel"), QMessageBox::Cancel})
+                     .remember("rememberIssueDeleteCompleted")
+                     .exec();
+
+  switch (r) {
+  case QMessageBox::Yes:
     emit removeDownload(-2, true);
+    break;
+  case QMessageBox::Ok:
+    emit removeDownload(-2, true, true);
+    break;
   }
 }
 
 void DownloadListView::issueDeleteUninstalled()
 {
-  if (QMessageBox::warning(
-          nullptr, tr("Delete Files?"),
-          tr("This will remove all uninstalled downloads from this list and from "
-             "disk.\n\nAre you absolutely sure you want to proceed?"),
-          QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+  const auto r =
+      MOBase::TaskDialog(this, tr("Delete all uninstalled downloads?"))
+          .main("This will remove all uninstalled downloads from this list and from "
+                "disk.")
+          .icon(QMessageBox::Question)
+          .button({tr("Move to the Recycle Bin"), QMessageBox::Yes})
+          .button({tr("Delete permanently"), QMessageBox::Ok})
+          .button({tr("Cancel"), QMessageBox::Cancel})
+          .remember("rememberIssueDeleteUninstalled")
+          .exec();
+
+  switch (r) {
+  case QMessageBox::Yes:
     emit removeDownload(-3, true);
+    break;
+  case QMessageBox::Ok:
+    emit removeDownload(-3, true, true);
+    break;
   }
 }
 

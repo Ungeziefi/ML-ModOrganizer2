@@ -82,6 +82,7 @@ signals:
   void queryInfo(int index);
   void queryInfoMd5(int index);
   void removeDownload(int index, bool deleteFile);
+  void removeDownload(int index, bool deleteFile, bool deletePermanent);
   void restoreDownload(int index);
   void cancelDownload(int index);
   void pauseDownload(int index);

@@ -41,6 +41,8 @@ DownloadsTab::DownloadsTab(OrganizerCore& core, Ui::MainWindow* mwui)
           SLOT(openInDownloadsFolder(int)));
   connect(ui.list, SIGNAL(removeDownload(int, bool)), m_core.downloadManager(),
           SLOT(removeDownload(int, bool)));
+  connect(ui.list, SIGNAL(removeDownload(int, bool, bool)), m_core.downloadManager(),
+          SLOT(removeDownload(int, bool, bool)));
   connect(ui.list, SIGNAL(restoreDownload(int)), m_core.downloadManager(),
           SLOT(restoreDownload(int)));
   connect(ui.list, SIGNAL(cancelDownload(int)), m_core.downloadManager(),
