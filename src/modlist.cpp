@@ -1159,6 +1159,38 @@ void ModList::removeRowForce(int row, const QModelIndex& parent)
   }
 }
 
+void ModList::removeRowForce(int row, const QModelIndex& parent, bool deletePermanent)
+{
+  if (static_cast<unsigned int>(row) >= ModInfo::getNumMods()) {
+    return;
+  }
+  if (m_Profile == nullptr)
+    return;
+
+  ModInfo::Ptr modInfo = ModInfo::getByIndex(row);
+
+  bool wasEnabled = m_Profile->modEnabled(row);
+
+  m_Profile->setModEnabled(row, false);
+
+  m_Profile->cancelModlistWrite();
+  beginRemoveRows(parent, row, row);
+  ModInfo::removeMod(row, deletePermanent);
+  m_Profile->refreshModStatus();  // removes the mod from the status list
+  endRemoveRows();
+  m_Profile->writeModlist();  // this ensures the modified list gets written back before
+                              // new mods can be installed
+
+  notifyModRemoved(modInfo->name());
+
+  if (wasEnabled) {
+    emit removeOrigin(modInfo->name());
+  }
+  if (!modInfo->isBackup()) {
+    emit modUninstalled(modInfo->installationFile());
+  }
+}
+
 bool ModList::removeRows(int row, int count, const QModelIndex& parent)
 {
   if (static_cast<unsigned int>(row) >= ModInfo::getNumMods()) {
@@ -1186,14 +1218,25 @@ bool ModList::removeRows(int row, int count, const QModelIndex& parent)
 
     success = true;
 
-    QMessageBox confirmBox(
-        QMessageBox::Question, tr("Confirm"),
-        tr("Are you sure you want to remove \"%1\"?").arg(getDisplayName(modInfo)),
-        QMessageBox::Yes | QMessageBox::No);
+  const auto r =
+        MOBase::TaskDialog(nullptr, tr("Delete mod"))
+            .main(tr("Are you sure you want to remove \"%1\"?").arg(getDisplayName(modInfo)))
+            .icon(QMessageBox::Question)
+            .button({tr("Move to the Recycle Bin"), QMessageBox::Yes})
+            .button({tr("Delete permanently"), QMessageBox::Ok})
+            .button({tr("Cancel"), QMessageBox::Cancel})
+            .remember("rememberSingleModRowDeletion")
+            .exec();
 
-    if (confirmBox.exec() == QMessageBox::Yes) {
+    switch (r) {
+    case QMessageBox::Yes:
       m_Profile->setModEnabled(row + i, false);
       removeRowForce(row + i, parent);
+      break;
+    case QMessageBox::Ok:
+      m_Profile->setModEnabled(row + i, false);
+      removeRowForce(row + i, parent, true);
+      break;
     }
   }
 
