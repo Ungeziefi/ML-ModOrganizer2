@@ -130,6 +130,12 @@ public:
    */
   void removeRowForce(int row, const QModelIndex& parent);
 
+  /**
+   * @brief remove the specified mod without asking for confirmation
+   * @param row the row to remove and whether to delete the files permanently
+   */
+  void removeRowForce(int row, const QModelIndex& parent, bool deletePermanent);
+
   void notifyChange(int rowStart, int rowEnd = -1);
   static QString getColumnName(int column);
 
